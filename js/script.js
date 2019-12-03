@@ -7,39 +7,42 @@ Rosio Dorson
 const $jobTitle = $('#title');
 const $otherJob = $('#other-title');
 const $options = $('#color option');
+const $newText = $('#design option:first');
+
 
 //add a focus to the name input field.
 $('#name').focus();
-
 //hide the your job roles text field so that it is hidden initially.
 $('#other-title').hide();
-
 //include a text field that shows up when the other option is selected from the job role drop down menu
 $jobTitle.change(function () {
     const change = $jobTitle.find(':selected').text();
     if (change === 'Other') {
         $otherJob.show();
     }
-})
-
-$(document).ready(function() {
-//hide the 'select theme' option in the dropdown menu
-$('#design option:first').hide();
-
-//hide the colors in the dropdown menu
-$options.hide();
-
-//add text to the color field that says "Please select a T-Shirt theme"
-$('#color').prepend("<option>Please select a T-Shirt theme</option>");
 });
-
+//hide the 'select theme' option in the dropdown menu
+$(document).ready(function() {
+    $('#color').prepend("<option>Please select a T-Shirt theme</option>");
+    $newText.hide();
+    $options.hide();
+});
 //use a conditional stmt inside change event listener to listen for changes made to "design" menu 'select' element
+/* NEED TO MAKE THE DROPDOWN MENUS UPDATE */
 $('#design').on('change', function() {
-if () {
-
-} else if () {
-
-}
+    if ($('#design').val() === 'js puns') {
+        $options.show();
+        $('#color option:eq(0)').hide();
+        $('#color option[value="tomato"]').hide();
+        $('#color option[value="steelblue"]').hide();
+        $('#color option[value="dimgrey"]').hide();
+    } else if ($('#design').val() === 'heart js') {
+        $options.show();
+        $('#color option:eq(0)').hide();
+        $('#color option[value="cornflowerblue"]').hide();
+        $('#color option[value="darkslategrey"]').hide();
+        $('#color option[value="gold"]').hide();   
+    }
 });
 //create an element to display the total activity cost
 
