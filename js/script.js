@@ -3,12 +3,11 @@ Treehouse Techdegree:
 FSJS project 3 - Interactive Form
 Rosio Dorson
 ******************************************/
-
+$(document).ready(function() {
 const $jobTitle = $('#title');
 const $otherJob = $('#other-title');
 const $options = $('#color option');
 const $newText = $('#design option:first');
-
 
 //add a focus to the name input field.
 $('#name').focus();
@@ -22,13 +21,12 @@ $jobTitle.change(function () {
     }
 });
 //hide the 'select theme' option in the dropdown menu
-$(document).ready(function() {
-    $('#color').prepend("<option>Please select a T-Shirt theme</option>");
-    $newText.hide();
-    $options.hide();
-});
+$('#color').prepend("<option>Please select a T-Shirt theme</option>");
+$newText.hide();
+$options.hide();
+
 //use a conditional stmt inside change event listener to listen for changes made to "design" menu 'select' element
-/* NEED TO MAKE THE DROPDOWN MENUS UPDATE */
+/* NEED TO MAKE THE DROPDOWN MENUS UPDATE(cornfield blue shouldn't be first) */
 $('#design').on('change', function() {
     if ($('#design').val() === 'js puns') {
         $options.show();
@@ -45,6 +43,18 @@ $('#design').on('change', function() {
     }
 });
 //create an element to display the total activity cost
+
+// $('input:checkbox').change(function() { 
+// const $totalActivityCost = '<span id="startBalance"> 0.00 </span>';
+// $('.activities').append($totalActivityCost);
+// ('input:checkbox:checked').each(function () {
+
+// })
+
+// })
+
+
+
 
 //use a change event listener to listen for changes in the activity section
 
@@ -65,4 +75,4 @@ $('#design').on('change', function() {
 //create the master validation function
 
 //add a submit event listener
-
+});
