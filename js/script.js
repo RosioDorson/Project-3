@@ -27,7 +27,7 @@ $options.hide();
 
 //use a conditional stmt inside change event listener to listen for changes made to "design" menu 'select' element
 /* NEED TO MAKE THE DROPDOWN MENUS UPDATE(cornfield blue shouldn't be first) */
-$('#design').on('change', function() {
+$('#design').on('change', function () {
     if ($('#design').val() === 'js puns') {
         $options.show();
         $('#color option:eq(0)').hide();
@@ -41,28 +41,27 @@ $('#design').on('change', function() {
         $('#color option[value="darkslategrey"]').hide();
         $('#color option[value="gold"]').hide();   
     }
-});
+ });
 //create an element to display the total activity cost
-
-// $('input:checkbox').change(function() { 
-// const $totalActivityCost = '<span id="startBalance"> 0.00 </span>';
-// $('.activities').append($totalActivityCost);
-// ('input:checkbox:checked').each(function () {
-
-// })
-
-// })
+let $totalActivityCost = '<span id="startBalance"> 0.00 </span>';
+$('.activities').append($totalActivityCost);
 
 
+$('.activities input:checkbox').on('change', function(event) { 
+    let $checked = (event.target);
+    $cost = $($checked).attr("data-cost");
+    $number = parseInt($cost);
+    console.log($number);
+    if ($($checked).prop('checked') === true) {
+        $totalActivityCost = startBalance + $number;
+    } else ($($checked).prop('checked') === false)
+    {
+       $totalActivityCost = startBalance - $number;
+    }
 
+$('#startBalance').text("Total: $" + $totalActivityCost)
 
-//use a change event listener to listen for changes in the activity section
-
-//create variables to store the important values
-
-//update the display and total activity cost 
-
-//disable the conflicting activities
+});
 
 //hide the select "payment method" 'option' so it doesnt show in the dropdown menu
 
