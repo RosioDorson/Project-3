@@ -40,14 +40,14 @@ $(document).ready(function() {
         }
      });
     //create an element to display the total activity cost
-    const $checkBox = $('.activities input:checkbox')
+     const $checkBox = $('.activities input:checkbox')
     let $totalActivityCost = 0.00;
     const $costDiv= $('<div></div>').text("Total: $" + $totalActivityCost);
-
     $('.activities').append($costDiv);
-    $checkBox.on('change', function(event) { 
-        let $checked = (event.target);
-        $cost = $($checked).attr("data-cost").slice(1,4);
+
+     $checkBox.on('change', function(event) { 
+         let $event = (event.target);
+        $cost = $($event).attr("data-cost").slice(1,4);
         $number = parseInt($cost);
         if ($(this).is(':checked')) {
             $totalActivityCost += $number;
@@ -56,34 +56,54 @@ $(document).ready(function() {
            $totalActivityCost -= $number;
         }
     $costDiv.text("Total: $" + $totalActivityCost);
-    $date = $($checked).attr("data-day-and-time");
+    const $date = $($event).attr("data-day-and-time");
+    const $name = $($event).attr("name");
+
+    if ($($date) === $(this).attr("data-day-and-time") && $name !== $(this).attr('name')) {
+        if ($(this).is(':checked')) {
+            $(this).attr('disabled',true);
+        } else
+        {
+            $(this).removeAttr('disabled');
+        }
+    }
+    console.log($name);
+    });
+
+    //hide the select "payment method" 'option' so it doesnt show in the dropdown menu
+    $('#payment option:eq(0)').hide();
+    //show the corresponding payment option and hide the others
+    $('#payment').change(function () {
+        const changes = $('#payment').find(':selected').text();
+        if (changes === 'Credit Card') {
+        } else if (changes === 'PayPal') {
+            $('#credit-card').hide();
+            $('#bitcoin').hide();
+            $('#paypal').show();
+        } else if (changes === 'Bitcoin') {
+            $('#credit-card').hide();
+            $('#paypal').hide();
+            $('#bitcoin').show();
+         }
+    });
+
+
 
     // GOOD CODE ^^
 
+    //CAN'T FIGURE OUT HOW TOO DISABLE CONFLICTING ACTIVITIES
+    
+    
 
 
-
-    // $checked.prop( "disabled", true );
- 
-     for (let i = 1; i < $checkBox.length; i++ ) {
-         if ($($date) === $($date).eq(i)) {
-             $checkBox.attr('disabled', true);
-         }
-    }
     
-    //hide the select "payment method" 'option' so it doesnt show in the dropdown menu
-    
-    //get the value of the payment select element
-    
-    //show the corresponding payment option and hide the others
     
     //create a separate validation function for each of the form fields 
     
     //create the master validation function
     
     //add a submit event listener
-    });
-    });
+    // });
 
 
 
