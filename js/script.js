@@ -4,30 +4,26 @@ FSJS project 3 - Interactive Form
 Rosio Dorson
 ******************************************/
 $(document).ready(function() {
-    const $jobTitle = $('#title');
-    const $otherJob = $('#other-title');
-    const $options = $('#color option');
-    const $newText = $('#design option:first');
-    
     //add a focus to the name input field.
     $('#name').focus();
     //hide the your job roles text field so that it is hidden initially.
     $('#other-title').hide();
     //include a text field that shows up when the other option is selected from the job role drop down menu
+    const $jobTitle = $('#title');
     $jobTitle.change(function () {
         const change = $jobTitle.find(':selected').text();
         if (change === 'Other') {
-            $otherJob.show();
+            $('#other-title').show();
         }
     });
     //hide the 'select theme' option in the dropdown menu
+    const $options = $('#color option');
+    const $newText = $('#design option:first');
     $('#color').prepend("<option>Please select a T-Shirt theme</option>");
     $('#color').val("Please select a T-Shirt theme");
     $newText.hide();
     $options.hide();
-    
     //use a conditional stmt inside change event listener to listen for changes made to "design" menu 'select' element
-    /* NEED TO MAKE THE DROPDOWN MENUS UPDATE(cornfield blue shouldn't be first) */
     $('#design').on('change', function () {
         if ($('#design').val() === 'js puns') {
             $options.show();
@@ -44,27 +40,37 @@ $(document).ready(function() {
         }
      });
     //create an element to display the total activity cost
-    let $totalActivityCost = '<span id="startBalance"> 0.00 </span>';
-    $('.activities').append($totalActivityCost);
-    
-    
-    $('.activities input:checkbox').on('change', function(event) { 
+    const $checkBox = $('.activities input:checkbox')
+    let $totalActivityCost = 0.00;
+    const $costDiv= $('<div></div>').text("Total: $" + $totalActivityCost);
+
+    $('.activities').append($costDiv);
+    $checkBox.on('change', function(event) { 
         let $checked = (event.target);
         $cost = $($checked).attr("data-cost").slice(1,4);
         $number = parseInt($cost);
-        console.log($number);
+        if ($(this).is(':checked')) {
+            $totalActivityCost += $number;
+        } else
+        {
+           $totalActivityCost -= $number;
+        }
+    $costDiv.text("Total: $" + $totalActivityCost);
+    $date = $($checked).attr("data-day-and-time");
+
+    // GOOD CODE ^^
 
 
-        // if ($($checked).prop('checked') === true) {
-        //     $totalActivityCost =+ $number;
-        // } else ($($checked).prop('checked') === false)
-        // {
-        //    $totalActivityCost =- $number;
-        // }
+
+
+    // $checked.prop( "disabled", true );
+ 
+     for (let i = 1; i < $checkBox.length; i++ ) {
+         if ($($date) === $($date).eq(i)) {
+             $checkBox.attr('disabled', true);
+         }
+    }
     
-    // $('#startBalance').text("Total: $" + $totalActivityCost)
-    
-    });
     //hide the select "payment method" 'option' so it doesnt show in the dropdown menu
     
     //get the value of the payment select element
@@ -76,6 +82,7 @@ $(document).ready(function() {
     //create the master validation function
     
     //add a submit event listener
+    });
     });
 
 
