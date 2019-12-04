@@ -62,7 +62,6 @@ $('.activities input:checkbox').on('change', function(event) {
 $('#startBalance').text("Total: $" + $totalActivityCost)
 
 });
-
 //hide the select "payment method" 'option' so it doesnt show in the dropdown menu
 
 //get the value of the payment select element
