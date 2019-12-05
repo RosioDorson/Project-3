@@ -49,24 +49,30 @@ $(document).ready(function() {
          let $event = (event.target);
         $cost = $($event).attr("data-cost").slice(1,4);
         $number = parseInt($cost);
+
+        $costDiv.text("Total: $" + $totalActivityCost);
+        const $date = $($event).attr("data-day-and-time");
+        const $name = $($event).attr("name");
+
+    
+        $('.activities input').each(function() {
+
+        if (($date) === $(this).attr("data-day-and-time") && ($name) !== $(this).attr('name')) {
+            if ($($event).is(':checked')) {
+                $(this).prop('disabled',true);
+            } else
+            {
+                $(this).removeAttr('disabled');
+            }
+        }
+        });
+
         if ($(this).is(':checked')) {
             $totalActivityCost += $number;
         } else
         {
            $totalActivityCost -= $number;
         }
-    $costDiv.text("Total: $" + $totalActivityCost);
-    const $date = $($event).attr("data-day-and-time");
-    const $name = $($event).attr("name");
-
-    if ($($date) === $(this).attr("data-day-and-time") && $name !== $(this).attr('name')) {
-        if ($(this).is(':checked')) {
-            $(this).attr('disabled',true);
-        } else
-        {
-            $(this).removeAttr('disabled');
-        }
-    }
     console.log($name);
     });
 
@@ -75,44 +81,16 @@ $(document).ready(function() {
     //show the corresponding payment option and hide the others
     $('#payment').change(function () {
         const changes = $('#payment').find(':selected').text();
-        if (changes === 'Credit Card') {
-        } else if (changes === 'PayPal') {
+        if (changes === 'PayPal') {
             $('#credit-card').hide();
             $('#bitcoin').hide();
             $('#paypal').show();
+        } else if (changes === 'Credit Card') {
+            $('#credit-card').show();
         } else if (changes === 'Bitcoin') {
             $('#credit-card').hide();
             $('#paypal').hide();
             $('#bitcoin').show();
          }
     });
-
-
-
-    // GOOD CODE ^^
-
-    //CAN'T FIGURE OUT HOW TOO DISABLE CONFLICTING ACTIVITIES
-    
-    
-
-
-    
-    
-    //create a separate validation function for each of the form fields 
-    
-    //create the master validation function
-    
-    //add a submit event listener
-    // });
-
-
-
-
-
-
-
-
-
-
-
-
+});
