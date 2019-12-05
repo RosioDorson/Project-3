@@ -50,14 +50,14 @@ $(document).ready(function() {
         $cost = $($event).attr("data-cost").slice(1,4);
         $number = parseInt($cost);
 
-        $costDiv.text("Total: $" + $totalActivityCost);
+        
         const $date = $($event).attr("data-day-and-time");
         const $name = $($event).attr("name");
 
     
-        $('.activities input').each(function() {
+        $checkBox.each(function() {
 
-        if (($date) === $(this).attr("data-day-and-time") && ($name) !== $(this).attr('name')) {
+        if (($date) === $(this).attr("data-day-and-time") && $($name) !== $(this).attr('name')) {
             if ($($event).is(':checked')) {
                 $(this).prop('disabled',true);
             } else
@@ -73,6 +73,8 @@ $(document).ready(function() {
         {
            $totalActivityCost -= $number;
         }
+
+        $costDiv.text("Total: $" + $totalActivityCost);
     console.log($name);
     });
 
