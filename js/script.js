@@ -25,10 +25,10 @@ $(document).ready(function() {
     $options.hide();
     $('#colors-js-puns').hide();
     //use a conditional stmt inside change event listener to listen for changes made to "design" menu 'select' element
-    $('#design').on('change', function () {
+    $('#design').change(function () {
         if ($('#design').val() === 'js puns') {
-            $('#colors-js-puns').show();
             $options.show();
+            $('#colors-js-puns').show();
             $('#color option:eq(0)').hide();
             $('#color option[value="tomato"]').hide();
             $('#color option[value="steelblue"]').hide();
