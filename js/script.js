@@ -73,7 +73,6 @@ $(document).ready(function() {
         }
         $costDiv.text("Total: $" + $totalActivityCost);
     });
-
     //hide the select "payment method" 'option' so it doesnt show in the dropdown menu
     $('#payment option:eq(0)').hide();
     $('#payment').val("Credit Card");
@@ -92,17 +91,13 @@ $(document).ready(function() {
             $('#bitcoin').show();
          }
     });
-
-
 //*VALIDATING FUNCTIONS*//
-
 const $invalidName = $("<span class='errormsg'>Please enter your name.</span>").insertBefore('#name').hide();
 const $invalidEmail = $("<span class='errormsg'>Please enter a valid email.</span>").insertBefore('#mail').hide();
 const $invalidActivity = $("<span class='errormsg'>Please select an activity.</span>").insertAfter('.activities legend').hide();
 const $invalidCard = $("<span class='errormsg'>Please enter a credit card number.</span>").insertBefore('#cc-num').hide();
 const $invalidZip = $("<span class='errormsg'>Please enter a valid Zip Code.</span>").insertBefore('#zip').hide();
 const $invalidCvv = $("<span class='errormsg'>Please enter a valid CVV.</span>").insertBefore('#cvv').hide();
-
 
 function $isvalidName() {
     const $name = $('#name');
@@ -185,7 +180,6 @@ function $isvalidCvv() {
         return true;
     }
 };    
-
 $('form').submit(function(event) {
     if ($isvalidName() === false) {
         event.preventDefault();
@@ -208,57 +202,4 @@ $('form').submit(function(event) {
         }
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
