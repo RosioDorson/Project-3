@@ -76,6 +76,7 @@ $(document).ready(function() {
 
     //hide the select "payment method" 'option' so it doesnt show in the dropdown menu
     $('#payment option:eq(0)').hide();
+    $('#payment').val("Credit Card");
     //show the corresponding payment option and hide the others
     $('#payment').change(function () {
         const changes = $('#payment').find(':selected').text();
