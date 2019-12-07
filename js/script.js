@@ -25,7 +25,7 @@ $(document).ready(function() {
     $options.hide();
     $('#colors-js-puns').hide();
     //use a conditional stmt inside change event listener to listen for changes made to "design" menu 'select' element
-    $('#design').change(function () {
+    $('#design').on('change', function () {
         if ($('#design').val() === 'js puns') {
             $options.show();
             $('#colors-js-puns').show();
@@ -49,19 +49,19 @@ $(document).ready(function() {
     $('.activities').append($costDiv);
 
      $checkBox.on('change', function(event) { 
-         let $event = (event.target);
+        let $event = (event.target);
         const $cost = $($event).attr("data-cost").slice(1,4);
         const $number = parseInt($cost);
         const $date = $($event).attr("data-day-and-time");
         const $name = $($event).attr("name");
         $checkBox.each(function() {
         if (($date) === $(this).attr("data-day-and-time") && 
-        $($name) !== $(this).attr('name')) {
+        ($name) !== $(this).attr('name')) {
             if ($($event).is(':checked')) {
-                $(this).prop('disabled',true);
+                $(this).attr('disabled',true);
             } else
             {
-                $(this).removeAttr('disabled');
+                $(this).removeAttr('disabled', false);
             }
         }
         });
@@ -77,7 +77,7 @@ $(document).ready(function() {
     $('#payment option:eq(0)').hide();
     $('#payment').val("Credit Card");
     //show the corresponding payment option and hide the others
-    $('#payment').change(function () {
+    $('#payment').on('change', function () {
         const changes = $('#payment').find(':selected').text();
         if (changes === 'PayPal') {
             $('#credit-card').hide();
