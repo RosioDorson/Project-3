@@ -74,10 +74,12 @@ $(document).ready(function() {
         $costDiv.text("Total: $" + $totalActivityCost);
     });
     //hide the select "payment method" 'option' so it doesnt show in the dropdown menu
-    $('#payment option:eq(0)').hide();
+    $('#payment option:eq(0)').remove();
     $('#payment').val("Credit Card");
     //show the corresponding payment option and hide the others
-    $('#payment').on('change', function () {
+    $('#bitcoin').hide();
+    $('#paypal').hide();
+    $('#payment').change(function () {
         const changes = $('#payment').find(':selected').text();
         if (changes === 'PayPal') {
             $('#credit-card').hide();
@@ -145,12 +147,11 @@ function $isvalidCreditcard() {
     if (!($regex).test($('#cc-num').val())) {
         $creditCard.addClass('errormsg').css("border-color", "red");
         $invalidCard.show();
-        return false;
-    } else {
+        return false;} else {
         $creditCard.removeClass('errormsg').css("border-color", "");
         $invalidCard.hide();
-        return true;
-    }
+        return true;    
+        }
 };    
 
 function $isvalidZipcode() {
